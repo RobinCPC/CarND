@@ -4,3 +4,6 @@
 [submodule "Traffic-Sign-Classifier"]
 	path = Traffic-Sign-Classifier
 	url = https://github.com/RobinCPC/CarND-Traffic-Sign-Classifier-Project.git
+[submodule "Behavioral-Cloning"]
+	path = Behavioral-Cloning
+	url = https://github.com/RobinCPC/CarND-Behavioral-Cloning-P3.git
