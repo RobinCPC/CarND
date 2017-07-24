@@ -7,3 +7,6 @@
 [submodule "Behavioral-Cloning"]
 	path = Behavioral-Cloning
 	url = https://github.com/RobinCPC/CarND-Behavioral-Cloning-P3.git
+[submodule "Advanced-Lane-Lines"]
+	path = Advanced-Lane-Lines
+	url = https://github.com/RobinCPC/CarND-Advanced-Lane-Lines.git
