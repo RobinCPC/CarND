@@ -10,3 +10,6 @@
 [submodule "Advanced-Lane-Lines"]
 	path = Advanced-Lane-Lines
 	url = https://github.com/RobinCPC/CarND-Advanced-Lane-Lines.git
+[submodule "Vehicle-Detection"]
+	path = Vehicle-Detection
+	url = https://github.com/RobinCPC/CarND-Vehicle-Detection.git
