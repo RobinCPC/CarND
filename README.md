@@ -17,19 +17,19 @@ Built and trained a deep neural network to classify traffic signs, using TensorF
 
 
 ## Project 3: Use Deep Learning to Clone Driving Behavior
-![sample images](./Behavioral-Cloning/examples/center-track.jpg)
+![sample images](https://github.com/RobinCPC/CarND-Behavioral-Cloning-P3/blob/master/examples/center-track.jpg)
 
 Built and trained a convolutional neural network for end-to-end driving in a simulator, using TensorFlow and Keras. Used optimization techniques such as regularization and dropout to generalize the network for driving on multiple tracks.
 
 
 ## Project 4: Advanced Lane Finding
-![visualized output](./Advanced-Lane-Lines/output_images/visualized_result.png)
+![visualized output](https://github.com/RobinCPC/CarND-Advanced-Lane-Lines/blob/master/output_images/visualized_result.png)
 
 Built an advanced lane-finding algorithm using distortion correction, image rectification, color transforms, and gradient thresholding. Identified lane curvature and vehicle displacement. Overcame environmental challenges such as shadows and pavement changes.
 
 
 # Project 5: Vehicle Detection and Tracking
-![visualized output](./Vehicle-Detection/output_images/output_boxes.png)
+![visualized output](https://github.com/RobinCPC/CarND-Vehicle-Detection/blob/master/output_images/output_boxes.png)
 
 Created a vehicle detection and tracking pipeline with OpenCV, histogram of oriented gradients (HOG), and support vector machines (SVM). Optimized and evaluated the model on video data from a automotive camera taken during highway driving.
 
