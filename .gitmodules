@@ -8,8 +8,8 @@
 	path = Behavioral-Cloning
 	url = https://github.com/RobinCPC/CarND-Behavioral-Cloning-P3.git
 [submodule "Advanced-Lane-Lines"]
-	path = Advanced-Lane-Lines
+	path = AdvancedLaneLines
 	url = https://github.com/RobinCPC/CarND-Advanced-Lane-Lines.git
 [submodule "Vehicle-Detection"]
-	path = Vehicle-Detection
+	path = VehicleDetection
 	url = https://github.com/RobinCPC/CarND-Vehicle-Detection.git
