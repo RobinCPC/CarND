@@ -81,13 +81,6 @@ class do_process(object):
             self.box_que.append(box_lists)
         self.n_box.append(len(box_lists))
 
-        #if len(box_lists) < 1:
-        #    return img
-
-        #out_img = np.copy(img)
-        #for b in box_lists:
-        #    cv2.rectangle(out_img, b[0], b[1], (0, 0, 255), 6)
-
         # build heat map and remove false positive
         heat = np.zeros_like(raw_img[:,:,0]).astype(np.float)
 
@@ -109,23 +102,6 @@ class do_process(object):
         # Find final boxes from heatmap using label function
         struct = np.ones((3, 3))
         labels = label(heatmap,structure=struct)
-        #draw_img = draw_labeled_bboxes(np.copy(raw_img), labels, heat, 3.3)
-        #font = cv2.FONT_HERSHEY_SIMPLEX
-        #cv2.putText(draw_img, "number of box:{}".format(len(box_lists)),
-        #            (50,50), font, 1, (255,255,255), 2, cv2.LINE_AA)
-        #cv2.putText(draw_img, "number of frame:{}".format(self.frame),
-        #            (50,100), font, 1, (255,255,255), 2, cv2.LINE_AA)
-
-        #if len(box_lists) >= 1:
-        #    fig = plt.figure()
-        #    plt.subplot(121)
-        #    plt.imshow(draw_img)
-        #    plt.title('Car Positions')
-        #    plt.subplot(122)
-        #    plt.imshow(heatmap, cmap='hot')
-        #    plt.title('Heat Map')
-        #    fig.tight_layout()
-        #    plt.show()
 
         # =====  Lane detection =====
         # load parameter
@@ -199,9 +175,15 @@ class do_process(object):
         draw_img = draw_labeled_bboxes(np.copy(result), labels, heat, 3.3)
         font = cv2.FONT_HERSHEY_SIMPLEX
         cv2.putText(draw_img, "number of box:{}".format(len(box_lists)),
-                    (650,50), font, 1, (255,255,255), 2, cv2.LINE_AA)
+                    (600,50), font, 1, (255,255,255), 2, cv2.LINE_AA)
         cv2.putText(draw_img, "number of frame:{}".format(self.frame),
-                    (650,100), font, 1, (255,255,255), 2, cv2.LINE_AA)
+                    (600,100), font, 1, (255,255,255), 2, cv2.LINE_AA)
+
+        # Draw heat map on output result
+        hmap_small = cv2.resize(heatmap, None, fx=0.25, fy=0.25, interpolation=cv2.INTER_AREA)
+        s_size = hmap_small.shape
+        #print( s_size, heatmap.shape, draw_img.shape)
+        draw_img[25 : 25 + s_size[0], 925 : 925 + s_size[1], :] = np.stack((hmap_small*5, hmap_small, hmap_small), axis=2)
 
         return draw_img
 
