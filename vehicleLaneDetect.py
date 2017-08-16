@@ -173,17 +173,22 @@ class do_process(object):
 
         # Next draw detected box for vehicles
         draw_img = draw_labeled_bboxes(np.copy(result), labels, heat, 3.3)
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        cv2.putText(draw_img, "number of box:{}".format(len(box_lists)),
-                    (600,50), font, 1, (255,255,255), 2, cv2.LINE_AA)
-        cv2.putText(draw_img, "number of frame:{}".format(self.frame),
-                    (600,100), font, 1, (255,255,255), 2, cv2.LINE_AA)
+        #font = cv2.FONT_HERSHEY_SIMPLEX
+        #cv2.putText(draw_img, "number of box:{}".format(len(box_lists)),
+        #            (600,50), font, 1, (255,255,255), 2, cv2.LINE_AA)
+        #cv2.putText(draw_img, "number of frame:{}".format(self.frame),
+        #            (600,100), font, 1, (255,255,255), 2, cv2.LINE_AA)
 
         # Draw heat map on output result
         hmap_small = cv2.resize(heatmap, None, fx=0.25, fy=0.25, interpolation=cv2.INTER_AREA)
         s_size = hmap_small.shape
         #print( s_size, heatmap.shape, draw_img.shape)
         draw_img[25 : 25 + s_size[0], 925 : 925 + s_size[1], :] = np.stack((hmap_small*5, hmap_small, hmap_small), axis=2)
+
+        # Draw lane searching image
+        lane_small = cv2.resize(lane_img, None, fx=0.25, fy=0.25, interpolation=cv2.INTER_AREA)
+        l_size = lane_small.shape
+        draw_img[25 : 25 + l_size[0], 25 : 25 + l_size[1], :] = lane_small
 
         return draw_img
 
