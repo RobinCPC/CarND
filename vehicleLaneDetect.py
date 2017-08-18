@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import cv2
 from scipy.ndimage.measurements import label
-#from VehicleDetection.detect_util import *
 from VehicleDetection.hog_subsample import find_cars, add_heat, apply_threshold, draw_labeled_bboxes
 from AdvancedLaneLines.detect_lanes import *
 from moviepy.editor import VideoFileClip
@@ -23,7 +22,6 @@ class do_process(object):
     upper_layer function to input relative parameter and set
     other global parameter to precessing image
     '''
-    #left_fit, right_fit = None, None
     line_l.current_fit = deque(maxlen=10)
     line_r.current_fit = deque(maxlen=10)
 
@@ -42,8 +40,6 @@ class do_process(object):
         :return:
         """
         self.frame += 1 # counting number of frame
-        #if self.frame <= 487:
-        #    return img
         # read parameter from clf
         svc            = self.clf["svc"]
         X_scaler       = self.clf["scaler"]
@@ -87,14 +83,9 @@ class do_process(object):
         # Add heat to each box in box list
         for bl in self.box_que:
             heat = add_heat(heat, bl)
-        #heat = heat / steps
 
         # Apply threshold to help remove false positives
         heat = apply_threshold(heat, 0)
-        #if len(self.box_que) <=3:
-        #    heat = apply_threshold(heat, 0)
-        #else:
-        #    heat = apply_threshold(heat, 0)
 
         # Visualize the heatmap when displaying
         heatmap = np.clip(heat, 0, 255)
@@ -173,16 +164,10 @@ class do_process(object):
 
         # Next draw detected box for vehicles
         draw_img = draw_labeled_bboxes(np.copy(result), labels, heat, 3.3)
-        #font = cv2.FONT_HERSHEY_SIMPLEX
-        #cv2.putText(draw_img, "number of box:{}".format(len(box_lists)),
-        #            (600,50), font, 1, (255,255,255), 2, cv2.LINE_AA)
-        #cv2.putText(draw_img, "number of frame:{}".format(self.frame),
-        #            (600,100), font, 1, (255,255,255), 2, cv2.LINE_AA)
 
         # Draw heat map on output result
         hmap_small = cv2.resize(heatmap, None, fx=0.25, fy=0.25, interpolation=cv2.INTER_AREA)
         s_size = hmap_small.shape
-        #print( s_size, heatmap.shape, draw_img.shape)
         draw_img[25 : 25 + s_size[0], 925 : 925 + s_size[1], :] = np.stack((hmap_small*5, hmap_small, hmap_small), axis=2)
 
         # Draw lane searching image
