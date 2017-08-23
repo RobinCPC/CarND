@@ -1,7 +1,9 @@
-import matplotlib.image as mpimg
-import matplotlib.pyplot as plt
+import sys
+import argparse
 import numpy as np
 import cv2
+import matplotlib.image as mpimg
+import matplotlib.pyplot as plt
 from scipy.ndimage.measurements import label
 from VehicleDetection.hog_subsample import find_cars, add_heat, apply_threshold, draw_labeled_bboxes
 from AdvancedLaneLines.detect_lanes import *
@@ -9,6 +11,18 @@ from moviepy.editor import VideoFileClip
 from collections import deque
 import pickle
 
+
+# CLI parser
+def parse_arg(argv):
+    """ parsing command-line arguments."""
+    parser = argparse.ArgumentParser(description="Detecting Vehicle and Lane lines with openCV and SVM")
+    parser.add_argument('-if', '--inputFile',
+                        default='./VehicleDetection/test_video.mp4',
+                        help='the video file you want to detect.')
+    parser.add_argument('-of', '--outputFile',
+                        default='./temp_output.mp4',
+                        help='the name of output file.')
+    return parser.parse_args(argv[1:])
 
 # Declare a global Line class object to store useful parameter to check the
 # sanity between each frame of images
@@ -183,6 +197,7 @@ if __name__ == '__main__':
         """
         Using pipeline to detect lane lines and vehicles on video
         """
+        args = parse_arg(sys.argv)
         # load camera parameters (mtx, dist)
         mtx, dist = [] ,[]
         with open('./AdvancedLaneLines/camera_cal/wide_dist_pickle.p', 'rb') as f:
@@ -201,9 +216,9 @@ if __name__ == '__main__':
         run.lane_param = (mtx, dist, M, Minv)
 
         # assign file name
-        fn = "./VehicleDetection/test_video.mp4"
+        fn = args.inputFile
 
-        project_output = "./test_out.mp4"
+        project_output = args.outputFile
         clip1 = VideoFileClip(fn)
         proj_clip = clip1.fl_image(run.process_image)
         proj_clip.write_videofile(project_output, audio=False)
