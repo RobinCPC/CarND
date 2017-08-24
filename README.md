@@ -1,6 +1,7 @@
 # CarND
 
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ### This repository collects all my project results of Udacity Self-Driving Car NanoDegree.
 
